@@ -5,14 +5,17 @@ import BaseHead from '../components/BaseHead.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & { id?: string };
 
-const { title, description, pubDate, updatedDate, heroImage, subject, draft } = Astro.props;
+const ogImages = import.meta.glob<{ default: ImageMetadata }>('../assets/og/*.jpg', { eager: true });
+
+const { title, description, pubDate, updatedDate, heroImage, subject, draft, id } = Astro.props;
+const ogImage = id ? ogImages[`../assets/og/${id}.jpg`]?.default : undefined;
 ---
 
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={title} description={description} image={ogImage} />
 		<style>
 			.post-head {
 				margin-bottom: 2.5em;
