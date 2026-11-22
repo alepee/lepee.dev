@@ -1,0 +1,98 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`About · ${SITE_TITLE}`} description="Antoine Lépée builds the systems around AI agents: memory, harnesses, verification. And makes closed appliances observable." />
+		<style>
+			.elsewhere {
+				font-family: var(--font-type);
+				font-size: 0.85em;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.4em 1.4em;
+				padding: 0;
+				list-style: none;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>About</h1>
+
+			<p>
+				I'm Antoine Lépée. I build the systems around AI agents: the memory they keep, the harnesses
+				they run in, and the checks that let people trust what they produce.
+			</p>
+			<p>
+				I've been doing this kind of work for more than fifteen years, mostly by crossing borders. I
+				started on the front-end, moved to back-end and business domains, touched data and
+				infrastructure, and spent several years as an engineering manager. I joined Evaneos in 2016
+				and I'm now an AI engineer there. I like the problems that sit between disciplines, and I
+				like to carry them from the first sketch to the thing that runs in production.
+			</p>
+			<p>
+				AI is not a recent turn for me. I started in 2022 with a conversational interface that
+				helped travellers say what kind of trip they wanted. That thread led to Trip Designer, to an
+				Evaneos app inside ChatGPT, and to what I spend most of my time on today.
+			</p>
+
+			<h2>What I'm working on</h2>
+			<ul>
+				<li>
+					<strong>Tooling for coding agents.</strong> A pipeline of thin, independent layers that
+					takes an agent from the intent of a change to the verification of its output, each layer
+					useful on its own.
+				</li>
+				<li>
+					<strong>Personal OS.</strong> A memory for my agents that I own: plain Markdown, versioned,
+					written during the session, caught up in the evening, consolidated once a week. The first
+					posts here are about it.
+				</li>
+				<li>
+					<strong>Making closed appliances observable.</strong> A
+					<a href="https://github.com/alepee/hass-hitachi_yutaki">Home Assistant integration for
+					Hitachi heat pumps</a>, used by other owners, and the instruments around it to understand
+					what the machine actually does.
+				</li>
+				<li>
+					<strong>An energy model of the house.</strong> A model that learns the physics of a home
+					from its sensors, so heating, solar and storage can be planned instead of guessed.
+				</li>
+				<li>
+					<strong>How Was Your Day.</strong> An app that records and transcribes meetings on the
+					device, separates the voices, and writes a summary where every point links back to the
+					moment it comes from.
+				</li>
+			</ul>
+
+			<h2>How I like to work</h2>
+			<p>
+				Small increments that each deliver something. Tools that give teams more autonomy, not more
+				process. Systems you can inspect: if I can't see what a machine or an agent remembers,
+				decides or consumes, I don't trust it yet. I'm fond of the ideas of
+				<a href="https://norabateson.wordpress.com/2015/11/03/symmathesy-a-word-in-progress/">symmathesy</a>
+				and holacracy: learning happens between the parts of a system, and authority works best
+				close to the work.
+			</p>
+			<p>
+				The drawings on this site borrow the line of 19th century naturalists' plates. Those drawings
+				had one job: show how a living thing is built and how it works.
+			</p>
+
+			<h2>Elsewhere</h2>
+			<ul class="elsewhere">
+				<li><a href="https://github.com/alepee">GitHub</a></li>
+				<li><a href="https://github.com/sponsors/alepee">GitHub Sponsors</a></li>
+				<li><a href="https://bsky.app/profile/lepee.me">Bluesky</a></li>
+				<li><a href="https://www.linkedin.com/in/alepee/">LinkedIn</a></li>
+				<li><a href="/rss.xml">RSS</a></li>
+			</ul>
+		</main>
+	</body>
+</html>

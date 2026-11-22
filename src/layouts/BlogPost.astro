@@ -1,0 +1,74 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, updatedDate, heroImage, subject, draft } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+		<style>
+			.post-head {
+				margin-bottom: 2.5em;
+				text-align: center;
+			}
+			.meta {
+				font-family: var(--font-type);
+				font-size: 0.8em;
+				font-variant: small-caps;
+				letter-spacing: 0.06em;
+				color: var(--ink-soft);
+				display: flex;
+				justify-content: center;
+				flex-wrap: wrap;
+				gap: 0.2em 0.8em;
+			}
+			.meta > :global(* + *)::before {
+				content: '·';
+				margin-right: 0.8em;
+			}
+			.draft {
+				border: 1px solid var(--rule);
+				padding: 0 0.4em;
+			}
+			.meta > .draft::before {
+				content: none;
+			}
+			h1 {
+				margin: 0.4em 0 0.3em;
+			}
+			.lede {
+				font-style: italic;
+				color: var(--ink-soft);
+				margin: 0 auto;
+				max-width: 34em;
+			}
+		</style>
+	</head>
+
+	<body>
+		<Header />
+		<main>
+			<article>
+				<div class="post-head">
+					{heroImage && <Image class="hero" src={heroImage} width={1536} alt="" />}
+					<div class="meta">
+						<FormattedDate date={pubDate} />
+						{subject && <span>{subject.toLowerCase()}</span>}
+						{updatedDate && <span>updated <FormattedDate date={updatedDate} /></span>}
+						{draft && <span class="draft">draft</span>}
+					</div>
+					<h1>{title}</h1>
+					<p class="lede">{description}</p>
+				</div>
+				<slot />
+			</article>
+		</main>
+	</body>
+</html>

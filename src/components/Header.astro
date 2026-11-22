@@ -1,0 +1,50 @@
+---
+import HeaderLink from './HeaderLink.astro';
+---
+
+<header>
+	<nav>
+		<a class="mark" href="/">A. Lépée</a>
+		<div class="links type">
+			<HeaderLink href="/">Index</HeaderLink>
+			<HeaderLink href="/about">About</HeaderLink>
+			<a href="/rss.xml">RSS</a>
+		</div>
+	</nav>
+</header>
+<style>
+	header {
+		width: var(--measure);
+		max-width: calc(100% - 2rem);
+		margin: auto;
+		padding-top: 1.5em;
+	}
+	nav {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		padding-bottom: 0.6em;
+		border-bottom: 1px solid var(--rule);
+	}
+	.mark {
+		font-family: var(--font-display);
+		font-size: 1.15em;
+		text-transform: uppercase;
+		letter-spacing: 0.14em;
+		text-decoration: none;
+	}
+	.links {
+		display: flex;
+		gap: 1.2em;
+		font-size: 0.8em;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+	.links a {
+		text-decoration: none;
+	}
+	.links a:hover,
+	.links :global(a.active) {
+		text-decoration: underline;
+	}
+</style>

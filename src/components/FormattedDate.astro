@@ -1,0 +1,13 @@
+---
+interface Props {
+	date: Date;
+}
+
+const { date } = Astro.props;
+
+// Patent style: "Nov. 21, 2026" (May, June, July unabbreviated)
+const months = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'];
+const label = `${months[date.getUTCMonth()]} ${date.getUTCDate()}, ${date.getUTCFullYear()}`;
+---
+
+<time datetime={date.toISOString()}>{label}</time>

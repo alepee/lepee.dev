@@ -1,0 +1,232 @@
+/*
+  Workshop-notebook theme.
+  Light: clean drafting paper, black ink. Dark: near-black, light ink.
+*/
+
+:root {
+	--paper: #f8f7f3;
+	--paper-edge: #f1efe9;
+	--ink: #1c1b18;
+	--ink-soft: #4d4a44;
+	--ink-faint: #9a968d;
+	--rule: #1c1b18;
+	--figure-filter: none;
+	--grain-opacity: 0.12;
+	--measure: 680px;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--paper: #161615;
+		--paper-edge: #121211;
+		--ink: #e6e4df;
+		--ink-soft: #b3b0a8;
+		--ink-faint: #6f6c66;
+		--rule: #e6e4df;
+		--figure-filter: invert(1) brightness(0.9);
+		--grain-opacity: 0.08;
+	}
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	background: var(--paper);
+}
+
+body {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	font-family: var(--font-body);
+	font-size: 18px;
+	line-height: 1.7;
+	color: var(--ink);
+	background:
+		radial-gradient(ellipse at center, transparent 70%, var(--paper-edge) 100%),
+		var(--paper);
+	text-align: left;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+/* Paper grain */
+body::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	opacity: var(--grain-opacity);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.25 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+	z-index: 0;
+}
+
+body > * {
+	position: relative;
+	z-index: 1;
+}
+
+main {
+	width: var(--measure);
+	max-width: calc(100% - 2rem);
+	margin: auto;
+	padding: 2.5em 0 3em;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: var(--font-display);
+	font-weight: 400;
+	color: var(--ink);
+	line-height: 1.2;
+	margin: 1.8em 0 0.6em;
+}
+h1 {
+	font-size: 2.4em;
+}
+h2 {
+	font-size: 1.55em;
+}
+h3 {
+	font-size: 1.2em;
+	font-style: italic;
+}
+
+p {
+	margin: 0 0 1.1em;
+}
+
+strong,
+b {
+	font-weight: 600;
+}
+
+a {
+	color: inherit;
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 3px;
+}
+a:hover {
+	text-decoration-thickness: 2px;
+}
+
+hr {
+	border: none;
+	border-top: 1px solid var(--rule);
+	margin: 2em 0;
+}
+
+blockquote {
+	margin: 1.5em 0;
+	padding: 0.2em 0 0.2em 1.2em;
+	border-left: 3px double var(--rule);
+	color: var(--ink-soft);
+	font-style: italic;
+}
+
+code {
+	font-family: var(--font-type);
+	font-size: 0.86em;
+	padding: 0 0.15em;
+}
+pre {
+	font-family: var(--font-type);
+	font-size: 0.82em;
+	line-height: 1.5;
+	padding: 1em 1.2em;
+	border: 1px solid var(--rule);
+	background: transparent !important;
+	overflow-x: auto;
+}
+pre > code {
+	padding: 0;
+	font-size: 1em;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1.5em 0;
+	font-size: 0.9em;
+}
+th {
+	font-family: var(--font-type);
+	font-weight: 400;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	font-size: 0.85em;
+	text-align: left;
+	border-bottom: 1px solid var(--rule);
+	padding: 0.4em 0.6em;
+}
+td {
+	border-bottom: 1px dotted var(--ink-faint);
+	padding: 0.4em 0.6em;
+	vertical-align: top;
+}
+
+ul,
+ol {
+	padding-left: 1.4em;
+}
+li {
+	margin-bottom: 0.3em;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Illustrations: black line art on transparency, inverted in dark mode */
+article img {
+	display: block;
+	width: 100%;
+	margin: 2.5em auto;
+	filter: var(--figure-filter);
+}
+/* Real photos and screenshots (file name starts with "photo-") are never inverted */
+article img[src*="photo-"] {
+	filter: none;
+	width: auto;
+	max-width: 100%;
+	max-height: 520px;
+	border: 1px solid var(--ink-faint);
+}
+
+/* Typewriter metadata */
+.type {
+	font-family: var(--font-type);
+}
+
+.sr-only {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+	body {
+		font-size: 17px;
+	}
+	h2 {
+		font-size: 1.35em;
+	}
+	h1 {
+		font-size: 1.8em;
+	}
+}
