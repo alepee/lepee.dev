@@ -230,3 +230,14 @@ article img[src*="photo-"] {
 		font-size: 1.8em;
 	}
 }
+
+/* Inline SVG diagrams drawn in the text colour */
+figure.diagram {
+	margin: 2em 0;
+	color: var(--ink);
+}
+figure.diagram svg {
+	display: block;
+	width: 100%;
+	height: auto;
+}
